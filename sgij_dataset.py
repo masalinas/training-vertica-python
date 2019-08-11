@@ -632,6 +632,8 @@ player_registers = []
 account_registers = []
 gambling_registers = []
 
+account_id = 1
+
 # generate SDIJ registers from OPERATORS
 for operator_id in range(0, len(OPERATORS)):                       
     for player_id in range(0, OPERATORS[operator_id]):
@@ -644,11 +646,14 @@ for operator_id in range(0, len(OPERATORS)):
         # generate account player registers from ROUNDS 
         for r in range(ROUNDS):
             register = account_register(operator_id + 1, player_id + 1)
+            register['account_id'] = account_id
             register['operator_id'] = operator_id + 1
             register['player_id'] = player_id + 1
          
             #print(id(a_register))
             account_registers.append(register)
+            
+            account_id = account_id + 1
             
 # export DGIJ registers collection to csv file
 csv_columns_player_register = ['operator_id',
@@ -691,11 +696,12 @@ try:
         
     csvFile.close()
 except IOError:
-    print("I/O Player File error")
+    print("I/O Player Dataset CSV file error.")
 
-print('STEP01: player dataset file generated correctly ...')
+print('STEP01: Player Dataset CSV file generated correctly ...')
 
-csv_columns_account_register = ['operator_id',
+csv_columns_account_register = ['account_id',
+                                'operator_id',
                                 'player_id',
                                 'checkin_time',
                                 'checkout_time', 
@@ -717,9 +723,8 @@ try:
         
     csvFile.close()
 except IOError:
-    print("I/O Account File error")
+    print("I/O Account Dataset CSV file error")
 
-print('STEP02: accounts dataset file generated correctly ...')
+print('STEP02: Accounts Dataset CSV file generated correctly ...')
 print()    
-print('DEMO dataset CSV files generated correctly ...')            
-        
+print('DEMO dataset CSV files generated correctly ...')

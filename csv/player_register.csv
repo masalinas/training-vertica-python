@@ -1,5 +1,5 @@
 operator_id,player_id,first_name,last_name_01,last_name_02,sex,birthdate,document_type,nie,email,login,pseudonym,resident,address,country,telephone,activation_date,fiscal_region,game_type,payment_method,device_type,ip,cnj_status,deposit_limit_day,deposit_limit_month,deposit_limit_year,vsvdi_status,vsvdi_date,vdocumental_status,vdocumental_date
-1,1,Gonzalo,Jiménez,Fajardo,M,02/06/1977,ID,4387008987904463012,moreraignacio@barros.com,moreraignacio@barros.com,moreraignacio,1,"Alameda Santiago Jódar 19
-Asturias, 91994",Spain,+34641200469,14/09/2010,10,PUN,2,PC,10.112.18.111,PV,600,-1,1500,S,25/09/2010,S,26/09/2010
-1,2,Esther,Ballesteros,Ribes,M,23/04/1997,PA,3561553496140719,silviablanes@yahoo.com,silviablanes@yahoo.com,silviablanes,1,"Callejón María Escalona 119 Puerta 4 
-Melilla, 60941",Spain,+34065078158,03/05/2018,08,OLT,17,PC,172.20.226.30,S,3000,-1,600,N,,N,
+1,1,Alejandro,Salamanca,Serrano,M,06/07/1977,SS,3508037563844151,jose-ramon96@pineda.com,jose-ramon96@pineda.com,jose-ramon96,1,"Pasadizo Catalina Bou 93
+Santa Cruz de Tenerife, 65388",Spain,+34539527243,17/11/2017,14,AZA,20,PC,172.19.186.194,A,-1,1500,1500,S,27/11/2017,N,
+1,2,Belen,Navas,Fonseca,M,01/03/1992,SS,30542535481357,jose-maria03@cardona.com,jose-maria03@cardona.com,jose-maria03,1,"Vial de Mercedes Jordán 70 Piso 4 
+Albacete, 11983",Spain,+34121924480,11/02/2012,18,AOX,15,OT,10.231.130.246,PR,600,-1,-1,N,,S,15/02/2012
