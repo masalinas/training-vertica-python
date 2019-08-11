@@ -624,7 +624,7 @@ def account_register(operator_id, player_id):
     return register
         
 # players per operator input
-OPERATORS = [2]  
+OPERATORS = [5, 10, 8]  
 ROUNDS = 3
 
 # generate player registers  collection                     

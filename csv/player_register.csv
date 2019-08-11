@@ -1,5 +1,46 @@
 operator_id,player_id,first_name,last_name_01,last_name_02,sex,birthdate,document_type,nie,email,login,pseudonym,resident,address,country,telephone,activation_date,fiscal_region,game_type,payment_method,device_type,ip,cnj_status,deposit_limit_day,deposit_limit_month,deposit_limit_year,vsvdi_status,vsvdi_date,vdocumental_status,vdocumental_date
-1,1,Alejandro,Salamanca,Serrano,M,06/07/1977,SS,3508037563844151,jose-ramon96@pineda.com,jose-ramon96@pineda.com,jose-ramon96,1,"Pasadizo Catalina Bou 93
-Santa Cruz de Tenerife, 65388",Spain,+34539527243,17/11/2017,14,AZA,20,PC,172.19.186.194,A,-1,1500,1500,S,27/11/2017,N,
-1,2,Belen,Navas,Fonseca,M,01/03/1992,SS,30542535481357,jose-maria03@cardona.com,jose-maria03@cardona.com,jose-maria03,1,"Vial de Mercedes Jordán 70 Piso 4 
-Albacete, 11983",Spain,+34121924480,11/02/2012,18,AOX,15,OT,10.231.130.246,PR,600,-1,-1,N,,S,15/02/2012
+1,1,Ismael,Almazán,Salvà,F,16/08/1983,SS,5203409774504093,ugalvez@yahoo.com,ugalvez@yahoo.com,ugalvez,1,"Callejón Salvador Ayala 76 Puerta 7 
+Huelva, 05463",Spain,+34867181044,09/10/2012,03,PEU,19,PC,172.16.7.20,O,-1,-1,-1,N,,N,
+1,2,Jose,Barriga,Barranco,F,27/08/1975,OT,6504498198083382,rvaldes@saenz-aroca.com,rvaldes@saenz-aroca.com,rvaldes,1,"Glorieta Jose Francisco Barriga 73 Piso 1 
+Zaragoza, 94912",Spain,+34747709601,25/07/2018,01,PUN,9,TF,172.23.84.44,SC,3000,1500,1500,S,20/08/2018,N,
+1,3,Virginia,Hernandez,Barriga,M,14/09/1993,OT,3569253458112796,pintojosep@garcia.org,pintojosep@garcia.org,pintojosep,1,"Acceso Pilar Arnau 78 Apt. 56 
+Almería, 59610",Spain,+34750377143,20/03/2010,08,OLP,11,MO,172.29.223.88,PV,3000,-1,-1,N,,N,
+1,4,家瑋,趙,郭,F,21/10/1985,SS,4022140413412750,yangyang@xiong.net,yangyang@xiong.net,yangyang,0,95614 新竹縣和街巷7段7號8樓,"Taiwan, Province of China",0903068785,10/11/2012,22,OLN,18,MO,192.168.132.88,PV,-1,600,600,N,,N,
+1,5,Celia,Fabra,Aroca,F,13/01/1977,PA,3568297961900768,santiagoporras@tormo.net,santiagoporras@tormo.net,santiagoporras,1,"Cuesta de Noelia Arjona 90 Puerta 9 
+Álava, 19728",Spain,+34439496482,19/02/2017,02,PLN,3,TF,172.29.6.126,S,600,3000,1500,S,21/02/2017,N,
+2,1,Fátima,Calatayud,Vives,M,26/09/1991,DL,503899639960,calatayudmanuela@saez.com,calatayudmanuela@saez.com,calatayudmanuela,1,"Plaza Eduardo Larrañaga 74
+Valladolid, 81483",Spain,+34843547464,30/11/2013,02,POT,8,TF,172.29.242.131,C,1500,-1,1500,N,,S,26/12/2013
+2,2,Milagros,Vidal,Garcés,M,25/10/1995,ID,3527059742997640,pilarcanals@hotmail.com,pilarcanals@hotmail.com,pilarcanals,1,"Cuesta de Ivan Carpio 4 Piso 0 
+Salamanca, 43691",Spain,+34002255847,14/01/2016,08,OLT,10,OT,192.168.152.232,O,3000,-1,-1,N,,S,19/01/2016
+2,3,Jose Antonio,Orozco,Fortuny,M,14/04/1999,PA,5104144620654533,arocadomingo@yahoo.com,arocadomingo@yahoo.com,arocadomingo,1,"Avenida Olga Cuesta 34
+Salamanca, 48473",Spain,+34036127899,17/01/2019,22,OLT,3,TF,192.168.43.50,O,600,-1,1500,S,24/01/2019,N,
+2,4,Anna,Porcel,Amo,F,04/06/1998,OT,3526249772509065,nieves84@hotmail.com,nieves84@hotmail.com,nieves84,1,"Acceso Isabel Amor 52 Piso 1 
+Sevilla, 67031",Spain,+34966965931,17/08/2011,03,PDM,16,PC,172.20.15.50,PR,-1,600,600,N,,N,
+2,5,Cristina,Parejo,Manuel,F,27/04/1994,ID,3569906948830919,jazcona@gmail.com,jazcona@gmail.com,jazcona,1,"Paseo de Soledad Zabaleta 47 Apt. 76 
+Sevilla, 05324",Spain,+34688603636,03/01/2013,08,AOX,19,OT,172.17.167.192,PR,600,1500,1500,N,,S,31/01/2013
+2,6,Clara,Romeu,Linares,F,04/11/1971,DL,5230632337266770,lourdespascual@pellicer.info,lourdespascual@pellicer.info,lourdespascual,1,"Pasadizo de Angela Díez 80
+Murcia, 77611",Spain,+34398732266,04/08/2011,21,PBL,14,TB,10.32.156.39,SC,600,600,-1,N,,S,06/08/2011
+2,7,Mohamed,Mascaró,Agullo,F,01/04/1986,ID,5202838247889437,carolina27@saez-quevedo.com,carolina27@saez-quevedo.com,carolina27,1,"Rambla de Francisco Javier Salvador 30 Puerta 6 
+Burgos, 10567",Spain,+34416789334,10/11/2010,17,PEU,8,TB,192.168.169.253,AE,3000,1500,3000,S,13/11/2010,S,22/11/2010
+2,8,हनुमान्,ड़ाल,अग्रवाल,M,16/07/1986,PA,2223834559045199,govindaa71@hotmail.com,govindaa71@hotmail.com,govindaa71,0,"25/4321 मोहन गायकवाड
+अगरतला-980371",India,06533467126,16/05/2019,13,PLT,17,TF,10.83.210.214,C,600,1500,1500,S,02/06/2019,N,
+2,9,Juan,Tejera,Bayona,F,15/08/1987,SS,376217123307429,miguelvalera@becerra.com,miguelvalera@becerra.com,miguelvalera,1,"Acceso Alejandro Ayllón 3 Apt. 93 
+Segovia, 95963",Spain,+34305988799,10/03/2019,17,BLJ,12,PC,10.161.17.37,A,600,1500,3000,S,02/04/2019,S,17/03/2019
+2,10,Bohumír,Sedláček,Kratochvíl,F,31/03/1998,SS,3556123125383291,vavrovamarta@post.cz,vavrovamarta@post.cz,vavrovamarta,0,"K Brusce 62
+825 82 Hejnice",Czechia,774925996,29/08/2015,19,AOC,3,OT,10.181.174.227,PR,3000,600,-1,N,,N,
+3,1,Francisco,Montenegro,Lorenzo,F,22/08/1987,PA,4667477225732722,moraledanuria@hotmail.com,moraledanuria@hotmail.com,moraledanuria,1,"Vial de Susana Juan 963 Apt. 86 
+Guadalajara, 76472",Spain,+34744696510,30/06/2015,13,AOC,15,MO,10.172.41.74,PR,3000,600,-1,S,16/07/2015,N,
+3,2,Elisa,Pont,Ferrán,F,22/02/1983,DL,3515255697758250,vsoler@yahoo.com,vsoler@yahoo.com,vsoler,1,"Calle de Samuel Villa 961
+Valladolid, 48553",Spain,+34694643531,01/09/2015,02,PEU,2,OT,172.31.173.9,PV,-1,1500,-1,N,,N,
+3,3,Nicolás,Mulet,Guijarro,M,30/05/1980,SS,30124760308413,anarosa@blasco-ugarte.com,anarosa@blasco-ugarte.com,anarosa,1,"Paseo Manuela Prats 2
+Vizcaya, 11168",Spain,+34465115245,19/03/2016,15,BLJ,8,TF,10.5.225.137,SC,600,600,1500,N,,S,18/04/2016
+3,4,Ramon,Gracia,Villalonga,F,12/05/1972,SS,4670324815451,cuencajose-ramon@gmail.com,cuencajose-ramon@gmail.com,cuencajose-ramon,1,"Cuesta Ines Roda 32
+La Coruña, 78513",Spain,+34471734697,28/05/2017,10,POC,6,OT,172.19.183.202,A,1500,1500,3000,S,04/06/2017,S,21/06/2017
+3,5,Elisa,Montalbán,Bárcena,M,02/07/1995,SS,639007262905,bjove@hotmail.com,bjove@hotmail.com,bjove,1,"Alameda Tomás Barros 66
+Lleida, 35374",Spain,+34928731249,16/01/2017,12,COM,8,MO,192.168.117.46,AC,600,1500,600,N,,N,
+3,6,Sandra,Chacón,Rico,F,31/12/1985,PA,4900255711022775,hramirez@yahoo.com,hramirez@yahoo.com,hramirez,1,"Ronda de Joaquin Ferrer 81 Puerta 0 
+Huesca, 00519",Spain,+34048102140,04/03/2010,13,ADM,18,OT,192.168.251.124,C,600,3000,3000,N,,S,27/03/2010
+3,7,Mónica,Soria,Bou,M,13/02/1994,SS,676229164444,mansoclara@yahoo.com,mansoclara@yahoo.com,mansoclara,1,"Vial de Inmaculada Gallo 93
+León, 78091",Spain,+34203107624,09/04/2018,22,OLN,13,MO,10.228.21.130,PV,-1,3000,600,S,15/04/2018,N,
+3,8,Anna,Larrañaga,Salinas,F,07/07/1988,PA,6501851948016628,pedro49@alvarado.com,pedro49@alvarado.com,pedro49,1,"Cañada David Baños 26
+Baleares, 36001",Spain,+34679049110,14/02/2010,08,PLN,18,PC,192.168.132.113,PV,3000,3000,1500,N,,S,18/02/2010
