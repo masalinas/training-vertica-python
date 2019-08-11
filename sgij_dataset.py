@@ -623,18 +623,21 @@ def account_register(operator_id, player_id):
 
     return register
         
-# players per operator input
+# INPUT01: players per operator input
 OPERATORS = [5, 10, 8]  
+
+# INPUT02: number of rounds per player
 ROUNDS = 3
 
-# generate player registers  collection                     
+# SGIJ register collections                   
 player_registers = []
 account_registers = []
 gambling_registers = []
 
+# initialize account identifier
 account_id = 1
 
-# generate SDIJ registers from OPERATORS
+# generate SGIJ registers from OPERATORS
 for operator_id in range(0, len(OPERATORS)):                       
     for player_id in range(0, OPERATORS[operator_id]):
         register = player_register()
