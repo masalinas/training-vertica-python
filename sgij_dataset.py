@@ -2,7 +2,10 @@
 """
 Created on Sat Aug 10 15:23:18 2019
 
+@description: Generate demo dataset CSV files for Training Vertica SGIJ Database
+
 @author: Miguel Salinas Gancedo
+@email: miguel@thingtrack.com
 """
 
 import random
