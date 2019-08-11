@@ -1,4 +1,5 @@
 operator_id,player_id,first_name,last_name_01,last_name_02,sex,birthdate,document_type,nie,email,login,pseudonym,resident,address,country,telephone,activation_date,fiscal_region,game_type,payment_method,device_type,ip,cnj_status,deposit_limit_day,deposit_limit_month,deposit_limit_year,vsvdi_status,vsvdi_date,vdocumental_status,vdocumental_date
-1,1,Raul,Amo,Arribas,M,03/09/1979,OT,4285548646280307929,lluchhector@hotmail.com,lluchhector@hotmail.com,lluchhector,1,"Ronda Manuela Luque 1 Puerta 3 
-Jaén, 63062",Spain,+34307601679,07/04/2010,05,OLN,12,TF,10.124.198.187,S,3000,3000,3000,S,16/04/2010,N,
-1,2,Альбіна,Гоголь-Яновський,Ковалюк,M,27/09/1990,ID,5248494992082004,solomiia14@meta.ua,solomiia14@meta.ua,solomiia14,0,"набережна Перспективная, 28, хутір Леонтій, 24468",Ukraine,760-26-50,13/07/2016,17,PGP,6,PC,10.146.20.135,C,-1,3000,-1,N,,S,28/07/2016
+1,1,Gonzalo,Jiménez,Fajardo,M,02/06/1977,ID,4387008987904463012,moreraignacio@barros.com,moreraignacio@barros.com,moreraignacio,1,"Alameda Santiago Jódar 19
+Asturias, 91994",Spain,+34641200469,14/09/2010,10,PUN,2,PC,10.112.18.111,PV,600,-1,1500,S,25/09/2010,S,26/09/2010
+1,2,Esther,Ballesteros,Ribes,M,23/04/1997,PA,3561553496140719,silviablanes@yahoo.com,silviablanes@yahoo.com,silviablanes,1,"Callejón María Escalona 119 Puerta 4 
+Melilla, 60941",Spain,+34065078158,03/05/2018,08,OLT,17,PC,172.20.226.30,S,3000,-1,600,N,,N,

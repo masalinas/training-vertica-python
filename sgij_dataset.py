@@ -2,7 +2,7 @@
 """
 Created on Sat Aug 10 15:23:18 2019
 
-@description: Generate demo dataset CSV files for Training Vertica SGIJ Database
+@description: Generate DEMO dataset CSV files for SGIJ Vertica Training
 
 @author: Miguel Salinas Gancedo
 @email: miguel@thingtrack.com
@@ -721,5 +721,5 @@ except IOError:
 
 print('STEP02: accounts dataset file generated correctly ...')
 print()    
-print('DGIJ Datasets generated correctly ...')            
+print('DEMO dataset CSV files generated correctly ...')            
         
