@@ -1,0 +1,4 @@
+operator_id,player_id,first_name,last_name_01,last_name_02,sex,birthdate,document_type,nie,email,login,pseudonym,resident,address,country,telephone,activation_date,fiscal_region,game_type,payment_method,device_type,ip,cnj_status,deposit_limit_day,deposit_limit_month,deposit_limit_year,vsvdi_status,vsvdi_date,vdocumental_status,vdocumental_date
+1,1,Raul,Amo,Arribas,M,03/09/1979,OT,4285548646280307929,lluchhector@hotmail.com,lluchhector@hotmail.com,lluchhector,1,"Ronda Manuela Luque 1 Puerta 3 
+Jaén, 63062",Spain,+34307601679,07/04/2010,05,OLN,12,TF,10.124.198.187,S,3000,3000,3000,S,16/04/2010,N,
+1,2,Альбіна,Гоголь-Яновський,Ковалюк,M,27/09/1990,ID,5248494992082004,solomiia14@meta.ua,solomiia14@meta.ua,solomiia14,0,"набережна Перспективная, 28, хутір Леонтій, 24468",Ukraine,760-26-50,13/07/2016,17,PGP,6,PC,10.146.20.135,C,-1,3000,-1,N,,S,28/07/2016
