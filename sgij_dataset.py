@@ -588,8 +588,8 @@ def account_register(operator_id, player_id):
         register['last_visit'] = start_time
         
     token = init_token
-    
-    while token > 0 and rounds <= random.uniform(20, 50):
+     
+    while token > 0 and rounds <= random.uniform(10, 20): # (min, max) total rounds
         host_luck = random.uniform(10, 20)
         player_luck = random.randint(8, 28)
         if host_skill * host_luck > player_skill * player_luck:
@@ -622,6 +622,18 @@ def account_register(operator_id, player_id):
     register['loss'] = loss
 
     return register
+
+def gambling_register(account_id):
+    register = {}
+    
+    checkin_time = next(register['checkin_time'] for register in account_registers if register['account_id'] == account_id)
+    checkout_time = next(register['checkout_time'] for register in account_registers if register['account_id'] == account_id)
+    profit = next(register['profit'] for register in account_registers if register['account_id'] == account_id)
+    rounds = next(register['rounds'] for register in account_registers if register['account_id'] == account_id)        
+    wins = next(register['wins'] for register in account_registers if register['account_id'] == account_id)
+    loss = next(register['loss'] for register in account_registers if register['account_id'] == account_id)  
+    
+    return register
         
 # INPUT01: players per operator input
 OPERATORS = [5, 10, 8]  
@@ -653,8 +665,14 @@ for operator_id in range(0, len(OPERATORS)):
             register['operator_id'] = operator_id + 1
             register['player_id'] = player_id + 1
          
-            #print(id(a_register))
             account_registers.append(register)
+            
+            # generate gampling player registers from each round
+#            for r in range(register['rounds']):
+#                register = gambling_register(account_id)
+#                register['account_id'] = account_id
+#                    
+#                gambling_registers.append(register)
             
             account_id = account_id + 1
             
