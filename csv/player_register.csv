@@ -1,5 +1,5 @@
 operator_id,player_id,first_name,last_name_01,last_name_02,sex,birthdate,document_type_id,identification_document,email,login,pseudonym,resident,address,country,telephone,activation_date,fiscal_region,game_id,payment_method_id,device_type_id,ip,cnj_status,deposit_limit_day,deposit_limit_month,deposit_limit_year,vsvdi_status,vsvdi_date,vdocumental_status,vdocumental_date
-1,1,Rocio,Toro,Cantón,F,09/03/1989,PA,3542666433708101,laurajimenez@pinilla.com,laurajimenez@pinilla.com,laurajimenez,S,"Plaza de Rosa Ferrero 380
-Navarra, 30809",Spain,+34395984402,07/08/2017,07,PLP,2,TB,10.217.188.234,AE,3000,-1,3000,N,,N,
-1,2,Josefina,Herrero,Rivera,F,13/04/1989,DL,343325734166710,zcanton@gmail.com,zcanton@gmail.com,zcanton,S,"Avenida Agustín Sales 9 Puerta 5 
-Granada, 64503",Spain,+34697902648,03/11/2016,12,POT,8,TF,10.108.244.100,A,3000,600,-1,N,,S,24/11/2016
+1,1,Concepción,Alemán,Mateos,M,16/12/1976,SS,3555770653262791,pedromiriam@gmail.com,pedromiriam@gmail.com,pedromiriam,S,"Paseo de Purificación Asensio 330 Puerta 1 
+Cáceres, 47105",Spain,+34502912918,23/12/2018,06,AHX,4,OT,10.54.59.226,S,600,600,1500,S,09/01/2019,N,
+1,2,Cristina,Murcia,Estévez,M,26/05/1990,PA,577448898665,nicolas61@canovas.org,nicolas61@canovas.org,nicolas61,S,"Urbanización de Rocio Ocaña 43
+Álava, 12918",Spain,+34644837192,25/02/2014,07,PEU,2,TF,172.18.139.30,A,1500,1500,600,N,,N,

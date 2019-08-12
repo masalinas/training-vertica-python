@@ -659,20 +659,52 @@ def gambling_register(account_id):
     checkin_time = next(account_register['checkin_time'] for account_register in account_registers if account_register['account_id'] == account_id)
     checkout_time = next(account_register['checkout_time'] for account_register in account_registers if account_register['account_id'] == account_id)
     rounds = next(account_register['rounds'] for account_register in account_registers if account_register['account_id'] == account_id)        
+    init_token = next(account_register['init_token'] for account_register in account_registers if account_register['account_id'] == account_id)    
     profit = next(account_register['profit'] for account_register in account_registers if account_register['account_id'] == account_id)    
     wins = next(account_register['wins'] for account_register in account_registers if account_register['account_id'] == account_id)
     loss = next(account_register['loss'] for account_register in account_registers if account_register['account_id'] == account_id)  
     
     intervals = gambling_intervals(checkin_time, checkout_time, rounds)
     
-    for i in range(len(intervals)):
+    # intervals loop
+    i = 0
+    while i < len(intervals):
+        #for i in range(len(intervals)):
         register['account_id'] = account_id
         register['game_id'] = game_type()
         register['checkin_time'] = intervals[i][0]
         register['checkout_time'] = intervals[i][1]
         register['ip'] = Faker().ipv4_private()
         
-        registers.append(register.copy())
+        # random win
+        win = random.randint(0, 1)
+        bet = 0;
+        profit = 0;
+        
+        if win == 1 and wins > 0:
+            bet = random.randint(1, init_token)
+            profit = random.randint(1, init_token)
+            
+            #init_token = init_token + profit
+            wins = wins - 1
+            i = i + 1
+            
+            register['bet'] = bet
+            register['profit'] = profit
+        
+            registers.append(register.copy())
+        elif win == 0 and loss > 0:
+            bet = random.randint(1, init_token)
+            profit = random.randint(1, init_token) * -1
+            
+            #init_token = init_token + profit
+            loss = loss - 1
+            i = i + 1
+            
+            register['bet'] = bet
+            register['profit'] = profit
+        
+            registers.append(register.copy())
         
     return registers
         
@@ -790,6 +822,8 @@ csv_columns_gambling_register = ['account_id',
                                  'game_id',
                                  'checkin_time',
                                  'checkout_time', 
+                                 'bet',
+                                 'profit',
                                  'ip']
 try:    
     with open('./csv/gambling_register.csv', 'w') as csvFile:
