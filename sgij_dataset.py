@@ -17,9 +17,6 @@ from faker.providers import internet
 import pycountry
 import csv
 
-# debug trace argument
-trace = 0
-
 # faker localized providers ISO codes supported
 faker_lang_iso_codes = ['ar_EG',
                         'ar_PS',
@@ -522,7 +519,7 @@ def player_register():
     register['last_name_01'] = fake.last_name()
     register['last_name_02'] = fake.last_name()
     register['sex'] = sex
-    register['birthdate'] = fake.date_between_dates(date_start=datetime(1970, 1, 1), date_end=datetime(2000, 1, 1)).strftime("%d/%m/%Y")
+    register['birthdate'] = fake.date_between_dates(date_start=datetime(1970, 1, 1), date_end=datetime(2000, 1, 1)).strftime("%Y-%m-%d")
     register['document_type_id'] = document_type()
     register['identification_document'] = fake.credit_card_number(card_type=None)  
     register['email'] = fake.email()
@@ -533,7 +530,7 @@ def player_register():
     register['country'] = country.name
     register['telephone'] = fake.phone_number().replace(' ', '')
     fa = fake.date_between_dates(date_start=datetime(2010, 1, 1), date_end=datetime.now())
-    register['activation_date'] = fa.strftime("%d/%m/%Y")
+    register['activation_date'] = fa.strftime("%Y-%m-%d")
     register['fiscal_region'] = fiscal_region()
     register['game_id'] = game_type()
     register['payment_method_id'] = payment_method_type()
@@ -545,47 +542,15 @@ def player_register():
     register['deposit_limit_year'] = deposit_limit()
     
     register['vsvdi_status'] = vsvdi_status()
-    register['vsvdi_date'] = ''
-    if register['vsvdi_status'] == 'S' :
-        register['vsvdi_date'] = (fa + timedelta(days=random.randint(1, 30))).strftime("%d/%m/%Y")
+    #register['vsvdi_date'] = ''
+    #if register['vsvdi_status'] == 'S' :
+    register['vsvdi_date'] = (fa + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d")
     
     register['vdocumental_status'] = vdocumental_status()
-    register['vdocumental_date'] = ''
-    if register['vdocumental_status'] == 'S' :
-        register['vdocumental_date'] = (fa + timedelta(days=random.randint(1, 30))).strftime("%d/%m/%Y")
+    #register['vdocumental_date'] = ''
+    #if register['vdocumental_status'] == 'S' :
+    register['vdocumental_date'] = (fa + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d")
         
-    # trace register
-    if trace == 1:
-        print('Nombre: ' + register['first_name'])
-        print('Apellidos 01: ' + register['last_name_01'])
-        print('Apellidos 02: ' + register['last_name_02'])
-        print('Sexo: ' + register['sex'])
-        print('Fecha nacimiento: ' + register['birthdate'])
-        print('Tipo Documento: ' + register['document_type_id'])
-        print('NIE: ' + register['identification_document'])
-        print('Login: ' + register['email'])
-        print('Pseudonimo: ' + register['pseudonym'])
-        print('Residente: ' + register['resident'])
-        print('Direccion: ' + register['address'])
-        print('Pais: ' + register['country'])
-        print('Telefono: ' + register['telephone'])
-        print('Fecha activacion: ' + register['activation_date'])
-        print('Email: ' + register['email'])
-        print('Region Fiscal: ' + register['fiscal_region'])
-        print('Tipo Juego: ' + register['game_id'])
-        print('Metodo Pago: ' + register['payment_method_id'])
-        print('Estado CNJ: ' + register['cnj_estado'])
-        print('Tipo Dispositivo: ' + register['device_type_id'])
-        print('IP: ' + register['ip'])
-        print('Limite Deposito Diario: ' + register['deposit_limit_day'])
-        print('Limite Deposito Mensual: ' + register['deposit_limit_month'])
-        print('Limite Deposito Anual: ' + register['deposit_limit_year'])
-        print('Estado CNJ: ' + register['cnj_status'])
-        print('Estado VSVDI: ' + register['vsvdi_status'])
-        print('Fecha VSVDI: ' + register['vsvdi_date'].strftime("%d/%m/%Y"))
-        print('Estado VDocumental: ' + register['vdocumental_status'])
-        print('Fecha VDocumental: ' + register['vdocumental_date'].strftime("%d/%m/%Y"))
-
     return register
     
 def account_register(operator_id, player_id):
@@ -601,7 +566,7 @@ def account_register(operator_id, player_id):
     
     if not any(register['operator_id'] == operator_id and 
                register['player_id'] == player_id for register in account_registers):
-        start_time = datetime.now() + timedelta(minutes = random.randint(1, 600))
+        start_time = datetime.now() + timedelta(minutes = random.randint(1, 400))
         checkin_time = start_time.strftime('%Y-%m-%d %H:%M')
         init_token = round(random.uniform(1, 10)) * 100
         player_skill = random.uniform(6 ,9)
@@ -618,7 +583,7 @@ def account_register(operator_id, player_id):
         
     token = init_token
      
-    while token > 0 and rounds <= random.uniform(10, 20): # (min, max) total rounds
+    while token > 0 and rounds <= random.uniform(5, 10): # (min, max) total rounds
         host_luck = random.uniform(10, 20)
         player_luck = random.randint(8, 28)
         if host_skill * host_luck > player_skill * player_luck:
@@ -709,8 +674,8 @@ def gambling_register(account_id):
     return registers
         
 # INPUT01: players per operator input
-#OPERATORS = [5, 10, 8]  
-OPERATORS = [2]          
+OPERATORS = [200, 500, 300]          
+#OPERATORS = [2]          
 
 # INPUT02: number of rounds per player
 ROUNDS = 3
