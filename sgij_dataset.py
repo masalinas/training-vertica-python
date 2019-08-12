@@ -457,6 +457,35 @@ def get_skillup_coef(x):
 
 def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
+
+def gambling_intervals(checkin_time, checkout_time, rounds): 
+    interval = [] 
+
+    t_in = datetime.strptime(checkin_time, '%Y-%m-%d %H:%M')    
+    t_out = datetime.strptime(checkout_time, '%Y-%m-%d %H:%M') 
+    
+    # calculate total Gamble spent in minutes
+    total_round_time = (t_out - t_in).total_seconds() / 60
+    
+    # calculate a random sorted checkout datetime collection from total rounds
+    for j in range(2*rounds - 2): 
+        time_round = random.randint(0, total_round_time)
+        checkout_round_time = t_in + timedelta(minutes=time_round)
+        
+        interval.append(checkout_round_time) 
+  
+    interval.sort()
+        
+    # convert datetime to string
+    for j in range(len(interval)): 
+        interval[j] = interval[j].strftime('%Y-%m-%d %H:%M')
+    
+    interval.insert(0, checkin_time)
+    interval.append(checkout_time)
+    
+    interval = [tuple(interval[i:i+2]) for i in range(0, len(interval), 2)]
+    
+    return interval
     
 # create player register   
 def player_register():
@@ -469,11 +498,11 @@ def player_register():
     country_codes_supported = [s for s in faker_lang_iso_codes if cc in s]
     
     if len(country_codes_supported) == 0 :
-        register['resident'] = 1
+        register['resident'] = 'S'
         cc = 'ES'
         lang_iso_code = 'es_ES'
     else:
-        register['resident'] = 0
+        register['resident'] = 'N'
         lang_iso_code = country_codes_supported[0]
     
     # get country from ISO country code
@@ -494,21 +523,21 @@ def player_register():
     register['last_name_02'] = fake.last_name()
     register['sex'] = sex
     register['birthdate'] = fake.date_between_dates(date_start=datetime(1970, 1, 1), date_end=datetime(2000, 1, 1)).strftime("%d/%m/%Y")
-    register['document_type'] = document_type()
-    register['nie'] = fake.credit_card_number(card_type=None)  
+    register['document_type_id'] = document_type()
+    register['identification_document'] = fake.credit_card_number(card_type=None)  
     register['email'] = fake.email()
     register['login'] = register['email'] 
     register['pseudonym'] = register['email'].split("@")[0] 
-    register['resident'] = str(register['resident'])
+    register['resident'] = register['resident']
     register['address'] = fake.address()
     register['country'] = country.name
     register['telephone'] = fake.phone_number().replace(' ', '')
     fa = fake.date_between_dates(date_start=datetime(2010, 1, 1), date_end=datetime.now())
     register['activation_date'] = fa.strftime("%d/%m/%Y")
     register['fiscal_region'] = fiscal_region()
-    register['game_type'] = game_type()
-    register['payment_method'] = payment_method_type()
-    register['device_type'] = device_type()
+    register['game_id'] = game_type()
+    register['payment_method_id'] = payment_method_type()
+    register['device_type_id'] = device_type()
     register['ip'] = fake.ipv4_private()
     register['cnj_status'] = CNJ_status()
     register['deposit_limit_day'] = deposit_limit()
@@ -532,8 +561,8 @@ def player_register():
         print('Apellidos 02: ' + register['last_name_02'])
         print('Sexo: ' + register['sex'])
         print('Fecha nacimiento: ' + register['birthdate'])
-        print('Tipo Documento: ' + register['document_type'])
-        print('NIE: ' + register['nie'])
+        print('Tipo Documento: ' + register['document_type_id'])
+        print('NIE: ' + register['identification_document'])
         print('Login: ' + register['email'])
         print('Pseudonimo: ' + register['pseudonym'])
         print('Residente: ' + register['resident'])
@@ -543,10 +572,10 @@ def player_register():
         print('Fecha activacion: ' + register['activation_date'])
         print('Email: ' + register['email'])
         print('Region Fiscal: ' + register['fiscal_region'])
-        print('Tipo Juego: ' + register['game_type'])
-        print('Metodo Pago: ' + register['payment_method'])
+        print('Tipo Juego: ' + register['game_id'])
+        print('Metodo Pago: ' + register['payment_method_id'])
         print('Estado CNJ: ' + register['cnj_estado'])
-        print('Tipo Dispositivo: ' + register['device_type'])
+        print('Tipo Dispositivo: ' + register['device_type_id'])
         print('IP: ' + register['ip'])
         print('Limite Deposito Diario: ' + register['deposit_limit_day'])
         print('Limite Deposito Mensual: ' + register['deposit_limit_month'])
@@ -624,19 +653,32 @@ def account_register(operator_id, player_id):
     return register
 
 def gambling_register(account_id):
+    registers = []
     register = {}
     
-    checkin_time = next(register['checkin_time'] for register in account_registers if register['account_id'] == account_id)
-    checkout_time = next(register['checkout_time'] for register in account_registers if register['account_id'] == account_id)
-    profit = next(register['profit'] for register in account_registers if register['account_id'] == account_id)
-    rounds = next(register['rounds'] for register in account_registers if register['account_id'] == account_id)        
-    wins = next(register['wins'] for register in account_registers if register['account_id'] == account_id)
-    loss = next(register['loss'] for register in account_registers if register['account_id'] == account_id)  
+    checkin_time = next(account_register['checkin_time'] for account_register in account_registers if account_register['account_id'] == account_id)
+    checkout_time = next(account_register['checkout_time'] for account_register in account_registers if account_register['account_id'] == account_id)
+    rounds = next(account_register['rounds'] for account_register in account_registers if account_register['account_id'] == account_id)        
+    profit = next(account_register['profit'] for account_register in account_registers if account_register['account_id'] == account_id)    
+    wins = next(account_register['wins'] for account_register in account_registers if account_register['account_id'] == account_id)
+    loss = next(account_register['loss'] for account_register in account_registers if account_register['account_id'] == account_id)  
     
-    return register
+    intervals = gambling_intervals(checkin_time, checkout_time, rounds)
+    
+    for i in range(len(intervals)):
+        register['account_id'] = account_id
+        register['game_id'] = game_type()
+        register['checkin_time'] = intervals[i][0]
+        register['checkout_time'] = intervals[i][1]
+        register['ip'] = Faker().ipv4_private()
+        
+        registers.append(register.copy())
+        
+    return registers
         
 # INPUT01: players per operator input
-OPERATORS = [5, 10, 8]  
+#OPERATORS = [5, 10, 8]  
+OPERATORS = [2]          
 
 # INPUT02: number of rounds per player
 ROUNDS = 3
@@ -668,11 +710,7 @@ for operator_id in range(0, len(OPERATORS)):
             account_registers.append(register)
             
             # generate gampling player registers from each round
-#            for r in range(register['rounds']):
-#                register = gambling_register(account_id)
-#                register['account_id'] = account_id
-#                    
-#                gambling_registers.append(register)
+            gambling_registers.extend(gambling_register(account_id))
             
             account_id = account_id + 1
             
@@ -684,8 +722,8 @@ csv_columns_player_register = ['operator_id',
                                'last_name_02', 
                                'sex', 
                                'birthdate', 
-                               'document_type', 
-                               'nie', 
+                               'document_type_id', 
+                               'identification_document', 
                                'email', 
                                'login', 
                                'pseudonym', 
@@ -695,9 +733,9 @@ csv_columns_player_register = ['operator_id',
                                'telephone',
                                'activation_date',
                                'fiscal_region',
-                               'game_type',
-                               'payment_method',
-                               'device_type',
+                               'game_id',
+                               'payment_method_id',
+                               'device_type_id',
                                'ip',
                                'cnj_status',
                                'deposit_limit_day',
@@ -746,6 +784,26 @@ try:
 except IOError:
     print("I/O Account Dataset CSV file error")
 
-print('STEP02: Accounts Dataset CSV file generated correctly ...')
+print('STEP02: Account Dataset CSV file generated correctly ...')
+
+csv_columns_gambling_register = ['account_id',
+                                 'game_id',
+                                 'checkin_time',
+                                 'checkout_time', 
+                                 'ip']
+try:    
+    with open('./csv/gambling_register.csv', 'w') as csvFile:
+        writer = csv.DictWriter(csvFile, fieldnames=csv_columns_gambling_register)
+        writer.writeheader()
+        
+        for gambling_register in gambling_registers:
+            writer.writerow(gambling_register)
+        
+    csvFile.close()
+except IOError:
+    print("I/O Gambling Dataset CSV file error")
+
+print('STEP03: Gambling Dataset CSV file generated correctly ...')
+
 print()    
 print('DEMO dataset CSV files generated correctly ...')

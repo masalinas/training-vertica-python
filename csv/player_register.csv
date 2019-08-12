@@ -1,45 +1,5 @@
-operator_id,player_id,first_name,last_name_01,last_name_02,sex,birthdate,document_type,nie,email,login,pseudonym,resident,address,country,telephone,activation_date,fiscal_region,game_type,payment_method,device_type,ip,cnj_status,deposit_limit_day,deposit_limit_month,deposit_limit_year,vsvdi_status,vsvdi_date,vdocumental_status,vdocumental_date
-1,1,Victor,Chaves,Marco,F,17/02/1996,PA,213153761058023,alfonso01@yahoo.com,alfonso01@yahoo.com,alfonso01,1,"Calle de Ivan Alberto 66 Puerta 8 
-Cádiz, 96134",Spain,+34184002332,19/01/2017,10,PLT,1,TF,192.168.165.83,A,-1,1500,-1,N,,S,12/02/2017
-1,2,Natalia,Calzada,Soto,F,24/11/1988,OT,346742831219548,mpineiro@pages-beltran.com,mpineiro@pages-beltran.com,mpineiro,1,"Ronda Raquel Giménez 9 Piso 5 
-Albacete, 60376",Spain,+34435585356,20/03/2011,17,PUN,16,TB,192.168.214.27,A,3000,600,3000,N,,N,
-1,3,Jose Francisco,Cámara,Real,F,11/08/1978,DL,5260423200523593,oscar60@gmail.com,oscar60@gmail.com,oscar60,1,"Pasadizo de Juana Escrivá 97
-Cantabria, 83787",Spain,+34631296498,18/08/2018,01,OEU,18,TB,172.29.237.140,PR,600,-1,1500,N,,N,
-1,4,杰,丁,缪,M,09/05/1997,SS,4891242580428261298,rwan@yanchang.cn,rwan@yanchang.cn,rwan,0,湖北省兰英县怀柔辽阳街n座 168151,China,18798049614,24/07/2014,03,ADX,20,TB,192.168.129.207,A,1500,600,3000,N,,N,
-1,5,مبينا,احمدی,تحسینی,M,24/05/1982,DL,30057787865272,synsltny@twsh.net,synsltny@twsh.net,synsltny,0,"37836 آرش بلوار سوئیت 707
-شرق عليرضا, چهارمحال و بختیاری 6856576524","Iran, Islamic Republic of",+988438104539,14/02/2017,16,AHX,4,TB,172.30.15.130,S,600,3000,-1,S,26/02/2017,N,
-2,1,Marc,Flores,Estévez,M,19/09/1974,ID,4338788551064715,aitor16@torralba-zamorano.com,aitor16@torralba-zamorano.com,aitor16,1,"Cuesta de Hugo Montaña 220
-Almería, 10053",Spain,+34538772925,03/02/2019,21,OLT,16,MO,192.168.210.8,PV,1500,-1,3000,N,,S,07/02/2019
-2,2,Angela,Llano,Matas,F,23/04/1994,PA,4262101196816,amparochamorro@bayo.net,amparochamorro@bayo.net,amparochamorro,1,"C. Jaime Rico 6 Puerta 9 
-Málaga, 91378",Spain,+34271786475,04/11/2018,09,AHM,1,PC,192.168.202.155,O,600,-1,3000,S,04/12/2018,S,07/11/2018
-2,3,Jordi,Barroso,Castell,F,28/04/1996,ID,3553645621434445,jose-miguel38@casas-chaves.com,jose-miguel38@casas-chaves.com,jose-miguel38,1,"Cuesta Anna Neira 199 Piso 1 
-Tarragona, 01443",Spain,+34865568841,02/09/2013,13,RLT,16,TF,10.182.237.240,O,1500,3000,600,N,,S,01/10/2013
-2,4,Георгій,Сиротенко,Демʼянюк,M,25/04/1997,OT,30103988354516,pryimakhanna@gov.ua,pryimakhanna@gov.ua,pryimakhanna,0,"вулиця Крупской, 677, місто Георгій, 01409",Ukraine,0777743545,25/03/2011,11,PHM,6,OT,10.206.168.199,S,1500,3000,600,S,08/04/2011,N,
-2,5,Martin,Domingo,Tomás,F,15/12/1974,OT,3506176207410151,maria03@hotmail.com,maria03@hotmail.com,maria03,1,"Via de Óscar Otero 68 Piso 2 
-Burgos, 86854",Spain,+34496047276,17/01/2010,03,AHC,9,MO,192.168.123.84,PR,600,1500,600,S,16/02/2010,N,
-2,6,Eva,Aller,Valera,M,05/07/1988,OT,3513252870078707,vicentellorente@hotmail.com,vicentellorente@hotmail.com,vicentellorente,1,"Pasadizo Mariano Barba 90
-Zaragoza, 11364",Spain,+34831236595,03/02/2016,18,COM,7,OT,172.19.63.155,O,-1,-1,600,N,,S,19/02/2016
-2,7,Angela,Seguí,Barriga,M,16/05/1999,SS,4000789357114,martabertran@montserrat.info,martabertran@montserrat.info,martabertran,1,"Camino Verónica Maestre 97 Puerta 5 
-Almería, 54648",Spain,+34747827433,28/07/2013,02,RLT,5,MO,172.20.190.71,O,-1,1500,1500,S,01/08/2013,S,20/08/2013
-2,8,Francisca,Benitez,Valderrama,M,08/01/1993,OT,6011487799436889,marta00@torrents.info,marta00@torrents.info,marta00,1,"Calle Patricia Barrios 71 Piso 8 
-Madrid, 32300",Spain,+34383055946,19/03/2013,16,OLT,8,TB,10.29.102.237,PV,3000,-1,-1,N,,S,18/04/2013
-2,9,Margarita,Arévalo,Molins,F,05/02/1994,SS,3579646337809318,alsinaiker@yahoo.com,alsinaiker@yahoo.com,alsinaiker,1,"Calle de Jose Luis Valdés 6 Piso 8 
-Barcelona, 63208",Spain,+34417272649,09/01/2016,07,OGP,18,OT,172.22.186.23,S,600,3000,-1,S,27/01/2016,N,
-2,10,军,秦,李,F,27/03/1981,SS,3545496259243497,fangjin@gmail.com,fangjin@gmail.com,fangjin,0,四川省斌市城东济南路g座 891303,China,13806427963,06/09/2010,07,PLN,1,TB,192.168.39.166,A,-1,3000,-1,S,19/09/2010,N,
-3,1,Wouter,de Leeuw,van Gent,M,17/07/1973,OT,180023309066995,qvan-beeck@koninklijke.com,qvan-beeck@koninklijke.com,qvan-beeck,0,"Chrisbaan 004
-1199ZH
-Koarnjum",Netherlands,+31212-469539,23/10/2017,15,PDM,1,MO,192.168.30.32,PV,600,600,-1,N,,N,
-3,2,Juan Luis,Baena,Sancho,M,21/03/1998,PA,4713862291361320,fatima75@pina-tormo.com,fatima75@pina-tormo.com,fatima75,1,"Urbanización Catalina Terrón 746 Piso 9 
-Zamora, 84102",Spain,+34358628259,27/02/2016,02,PLT,12,TB,192.168.29.193,O,-1,3000,3000,N,,S,26/03/2016
-3,3,Jose Carlos,Cervera,Zaragoza,F,03/11/1972,PA,38603130647594,gangel@hotmail.com,gangel@hotmail.com,gangel,1,"Paseo de Concepción Villanueva 110
-Almería, 16397",Spain,+34271393390,16/07/2017,20,ADM,5,TB,172.17.211.56,AC,600,3000,1500,S,22/07/2017,S,03/08/2017
-3,4,Fernando,Mercader,Palmer,M,09/05/1974,OT,6011959140475501,virginiabayo@diez.com,virginiabayo@diez.com,virginiabayo,1,"Urbanización de Francisco Torrent 51 Puerta 1 
-Madrid, 55550",Spain,+34199562115,05/09/2018,18,AOC,1,MO,192.168.113.169,PR,1500,600,3000,S,07/09/2018,N,
-3,5,Rocio,Cabeza,Villalobos,F,08/02/1999,DL,4193278104780,izaguirresergio@rosa-pereira.biz,izaguirresergio@rosa-pereira.biz,izaguirresergio,1,"Camino Susana Ariño 37 Puerta 8 
-Ciudad, 16319",Spain,+34315041167,05/05/2015,15,RLT,18,PC,10.28.86.77,AC,-1,600,-1,N,,N,
-3,6,Mariano,Maldonado,Espinosa,M,22/04/1971,OT,4275043148706906864,emilia24@barba.info,emilia24@barba.info,emilia24,1,"C. de Verónica Bernal 98 Apt. 69 
-Ávila, 40387",Spain,+34671522030,08/07/2017,03,BLJ,7,TB,10.110.113.1,PV,-1,-1,1500,S,07/08/2017,N,
-3,7,Mireia,Flores,Yuste,F,04/08/1993,DL,3516207022840799,trujillovictor@gmail.com,trujillovictor@gmail.com,trujillovictor,1,"Urbanización Adriana Toro 46 Piso 2 
-Vizcaya, 68458",Spain,+34756798760,06/02/2015,16,OBL,11,MO,172.21.68.92,AC,-1,3000,3000,S,27/02/2015,S,15/02/2015
-3,8,Hugo,Marín,Calatayud,F,19/04/1979,DL,6519207772265668,ssaenz@gmail.com,ssaenz@gmail.com,ssaenz,1,"Callejón Ruben Pérez 2
-Melilla, 33657",Spain,+34886387630,06/05/2015,01,ADX,14,TB,172.16.194.242,PV,600,600,1500,N,,S,31/05/2015
+operator_id,player_id,first_name,last_name_01,last_name_02,sex,birthdate,document_type_id,identification_document,email,login,pseudonym,resident,address,country,telephone,activation_date,fiscal_region,game_id,payment_method_id,device_type_id,ip,cnj_status,deposit_limit_day,deposit_limit_month,deposit_limit_year,vsvdi_status,vsvdi_date,vdocumental_status,vdocumental_date
+1,1,Rocio,Toro,Cantón,F,09/03/1989,PA,3542666433708101,laurajimenez@pinilla.com,laurajimenez@pinilla.com,laurajimenez,S,"Plaza de Rosa Ferrero 380
+Navarra, 30809",Spain,+34395984402,07/08/2017,07,PLP,2,TB,10.217.188.234,AE,3000,-1,3000,N,,N,
+1,2,Josefina,Herrero,Rivera,F,13/04/1989,DL,343325734166710,zcanton@gmail.com,zcanton@gmail.com,zcanton,S,"Avenida Agustín Sales 9 Puerta 5 
+Granada, 64503",Spain,+34697902648,03/11/2016,12,POT,8,TF,10.108.244.100,A,3000,600,-1,N,,S,24/11/2016
