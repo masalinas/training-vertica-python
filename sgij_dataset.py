@@ -454,14 +454,14 @@ def get_skillup_coef(x):
 def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
 
-# generate a date intervals for a gambler account holder in a period of time
-def gambling_date_intervals(checkin_time, checkout_time, rounds): 
+# generate a date intervals for a betting account holder in a period of time
+def betting_date_intervals(checkin_time, checkout_time, rounds): 
     interval = [] 
 
     t_in = datetime.strptime(checkin_time, '%Y-%m-%d %H:%M')    
     t_out = datetime.strptime(checkout_time, '%Y-%m-%d %H:%M') 
     
-    # calculate total Gamble spent in minutes
+    # calculate total betting time spent in minutes
     total_round_time = (t_out - t_in).total_seconds() / 60
     
     # calculate a random sorted checkout datetime collection from total rounds
@@ -484,8 +484,8 @@ def gambling_date_intervals(checkin_time, checkout_time, rounds):
     
     return interval
     
-# generate the gambler personal information register
-def gambler_register():
+# generate the player personal information register
+def player_register():
     register = {}
     
     # generate random ISO country code
@@ -542,13 +542,9 @@ def gambler_register():
     register['deposit_limit_year'] = deposit_limit()
     
     register['vsvdi_status'] = vsvdi_status()
-    #register['vsvdi_date'] = ''
-    #if register['vsvdi_status'] == 'S' :
     register['vsvdi_date'] = (fa + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d")
     
     register['vdocumental_status'] = vdocumental_status()
-    #register['vdocumental_date'] = ''
-    #if register['vdocumental_status'] == 'S' :
     register['vdocumental_date'] = (fa + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d")
         
     return register
@@ -631,7 +627,7 @@ def betting_register(account_id):
     wins = next(account_register['wins'] for account_register in account_registers if account_register['account_id'] == account_id)
     loss = next(account_register['loss'] for account_register in account_registers if account_register['account_id'] == account_id)  
     
-    intervals = gambling_date_intervals(checkin_time, checkout_time, rounds)
+    intervals = betting_date_intervals(checkin_time, checkout_time, rounds)
     
     # intervals loop
     i = 0
@@ -676,8 +672,8 @@ def betting_register(account_id):
     return registers
         
 # INPUT01: players per operator input
-#OPERATORS = [200, 500, 300]          
-OPERATORS = [2]          
+OPERATORS = [200, 500, 300]          
+#OPERATORS = [2]          
 
 # INPUT02: number of rounds per player
 ROUNDS = 3
@@ -685,7 +681,7 @@ ROUNDS = 3
 # SGIJ register collections                   
 player_registers = []
 account_registers = []
-gambling_registers = []
+betting_registers = []
 
 # initialize account identifier
 account_id = 1
@@ -693,7 +689,7 @@ account_id = 1
 # generate SGIJ registers from OPERATORS
 for operator_id in range(0, len(OPERATORS)):                       
     for player_id in range(0, OPERATORS[operator_id]):
-        register = gambler_register()
+        register = player_register()
         register['operator_id'] = operator_id + 1
         register['player_id'] = player_id + 1
         
@@ -709,44 +705,44 @@ for operator_id in range(0, len(OPERATORS)):
             account_registers.append(register)
             
             # generate gampling player registers from each round
-            gambling_registers.extend(betting_register(account_id))
+            betting_registers.extend(betting_register(account_id))
             
             account_id = account_id + 1
             
 # export DGIJ registers collection to csv file
-csv_columns_gambler_register = ['operator_id',
-                                'player_id',
-                                'first_name', 
-                                'last_name_01', 
-                                'last_name_02', 
-                                'sex', 
-                                'birthdate', 
-                                'document_type_id', 
-                                'identification_document', 
-                                'email', 
-                                'login', 
-                                'pseudonym', 
-                                'resident', 
-                                'address',
-                                'country',
-                                'telephone',
-                                'activation_date',
-                                'fiscal_region',
-                                'game_id',
-                                'payment_method_id',
-                                'device_type_id',
-                                'ip',
-                                'cnj_status',
-                                'deposit_limit_day',
-                                'deposit_limit_month',
-                                'deposit_limit_year',
-                                'vsvdi_status',
-                                'vsvdi_date',
-                                'vdocumental_status',
-                                'vdocumental_date']
+csv_columns_player_register = ['operator_id',
+                               'player_id',
+                               'first_name', 
+                               'last_name_01', 
+                               'last_name_02', 
+                               'sex', 
+                               'birthdate', 
+                               'document_type_id', 
+                               'identification_document', 
+                               'email', 
+                               'login', 
+                               'pseudonym', 
+                               'resident', 
+                               'address',
+                               'country',
+                               'telephone',
+                               'activation_date',
+                               'fiscal_region',
+                               'game_id',
+                               'payment_method_id',
+                               'device_type_id',
+                               'ip',
+                               'cnj_status',
+                               'deposit_limit_day',
+                               'deposit_limit_month',
+                               'deposit_limit_year',
+                               'vsvdi_status',
+                               'vsvdi_date',
+                               'vdocumental_status',
+                               'vdocumental_date']
 try:
     with open('./csv/player_register.csv', 'w') as csvFile:
-        writer = csv.DictWriter(csvFile, fieldnames=csv_columns_gambler_register)
+        writer = csv.DictWriter(csvFile, fieldnames=csv_columns_player_register)
         writer.writeheader()
         
         for player_register in player_registers:
@@ -754,9 +750,9 @@ try:
         
     csvFile.close()
 except IOError:
-    print("I/O Gambler Dataset CSV file error.")
+    print("I/O Player Dataset CSV file error.")
 
-print('STEP01: Gambler Dataset CSV file generated correctly ...')
+print('STEP01: Player Dataset CSV file generated correctly ...')
 
 csv_columns_account_register = ['account_id',
                                 'operator_id',
@@ -793,12 +789,12 @@ csv_columns_betting_register = ['account_id',
                                 'profit',
                                 'ip']
 try:    
-    with open('./csv/gambling_register.csv', 'w') as csvFile:
+    with open('./csv/betting_register.csv', 'w') as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=csv_columns_betting_register)
         writer.writeheader()
         
-        for gambling_register in gambling_registers:
-            writer.writerow(gambling_register)
+        for betting_register in betting_registers:
+            writer.writerow(betting_register)
         
     csvFile.close()
 except IOError:
