@@ -683,8 +683,8 @@ def betting_register(account_id):
 # Script Inputs:
 # INPUT01: players per operator input
 # INPUT02: number of rounds per player
-OPERATORS = [200, 500, 300]          
-#OPERATORS = [2]          
+#OPERATORS = [200, 500, 300]          
+OPERATORS = [2]          
 ROUNDS = 3
 
 # SGIJ register collections                   
