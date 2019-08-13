@@ -560,7 +560,7 @@ def account_register(operator_id, player_id):
     
     if not any(register['operator_id'] == operator_id and 
                register['player_id'] == player_id for register in account_registers):
-        start_time = datetime.now() + timedelta(minutes = random.randint(1, 400))
+        start_time = datetime.now() + timedelta(minutes = random.randint(1, 2000))
         checkin_time = start_time.strftime('%Y-%m-%d %H:%M')
         init_token = round(random.uniform(1, 10)) * 100
         deposit = roundup(init_token * random.uniform(0.7, 1.3))
@@ -683,8 +683,8 @@ def betting_register(account_id):
 # Script Inputs:
 # INPUT01: players per operator input
 # INPUT02: number of rounds per player
-#OPERATORS = [200, 500, 300]          
-OPERATORS = [2]          
+OPERATORS = [200, 500, 300]          
+#OPERATORS = [2]          
 ROUNDS = 3
 
 # SGIJ register collections                   
