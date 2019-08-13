@@ -554,8 +554,8 @@ def account_register(operator_id, player_id):
     register = {}
      
     host_skill = 10
-    wins = 0
-    loss = 0
+    #wins = 0
+    #loss = 0
     rounds = 0
     checkin_time = None
     checkout_time = None
@@ -566,13 +566,16 @@ def account_register(operator_id, player_id):
         start_time = datetime.now() + timedelta(minutes = random.randint(1, 400))
         checkin_time = start_time.strftime('%Y-%m-%d %H:%M')
         init_token = round(random.uniform(1, 10)) * 100
+        deposit = roundup(init_token * random.uniform(0.7, 1.3))
         player_skill = random.uniform(6 ,9)
         
         register['player_skill'] = player_skill
         register['init_token'] = init_token
         register['last_visit'] = start_time
     else:
-        init_token = roundup(next(register['init_token'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) * random.uniform(0.7, 1.3)) 
+        #previous_final_token = roundup(next(register['final_token'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) - 1) 
+        init_token = roundup(next(register['init_token'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) * random.uniform(0.7, 1.3) / 2) 
+        deposit = roundup(init_token * random.uniform(0.7, 1.3))
         player_skill = next(register['player_skill'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id)
         start_time = next(register['last_visit'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) + timedelta(days=random.randint(3,7))
         checkin_time = start_time.strftime('%Y-%m-%d %H:%M')
@@ -590,11 +593,11 @@ def account_register(operator_id, player_id):
             else: 
                 token = 0
                 checkout_time = (datetime.now()+ timedelta(hours=rounds/5)).strftime('%Y-%m-%d %H:%M')
-            loss += 1 
+            #loss += 1 
             
         elif host_skill * host_luck < player_skill * player_luck:
             token += round(init_token * random.uniform(0.05, 0.1)) #win x% token in 1 round
-            wins += 1
+            #wins += 1
 
         skillup_coef = get_skillup_coef(player_skill)
         player_skill += math.sqrt(rounds/skillup_coef)
@@ -606,11 +609,13 @@ def account_register(operator_id, player_id):
     register['checkout_time'] = checkout_time
     register['rounds'] = rounds
     register['init_token'] = init_token
-    register['withdraw'] = token
+    register['final_token'] = roundup(token * random.uniform(0.7, 1.3))
     register['profit'] = token - init_token
+    register['deposit'] = deposit    
+    register['withdrawal'] = register['final_token'] - register['init_token'] - register['deposit'] - register['profit']    
     register['player_skill'] = player_skill
-    register['wins'] = wins
-    register['loss'] = loss
+    #register['wins'] = wins
+    #register['loss'] = loss
 
     return register
 
@@ -623,16 +628,15 @@ def betting_register(account_id):
     checkout_time = next(account_register['checkout_time'] for account_register in account_registers if account_register['account_id'] == account_id)
     rounds = next(account_register['rounds'] for account_register in account_registers if account_register['account_id'] == account_id)        
     init_token = next(account_register['init_token'] for account_register in account_registers if account_register['account_id'] == account_id)    
-    profit = next(account_register['profit'] for account_register in account_registers if account_register['account_id'] == account_id)    
-    wins = next(account_register['wins'] for account_register in account_registers if account_register['account_id'] == account_id)
-    loss = next(account_register['loss'] for account_register in account_registers if account_register['account_id'] == account_id)  
+    profit_account = next(account_register['profit'] for account_register in account_registers if account_register['account_id'] == account_id)    
     
     intervals = betting_date_intervals(checkin_time, checkout_time, rounds)
     
-    # intervals loop
     i = 0
+    profit_tot = 0
+
+    # bettng loop generator    
     while i < len(intervals):
-        #for i in range(len(intervals)):
         register['account_id'] = account_id
         register['game_id'] = game_type()
         register['checkin_time'] = intervals[i][0]
@@ -644,38 +648,50 @@ def betting_register(account_id):
         bet = 0;
         profit = 0;
         
-        if win == 1 and wins > 0:
+        if win == 1:
             bet = random.randint(1, init_token)
             profit = random.randint(1, init_token)
             
-            #init_token = init_token + profit
-            wins = wins - 1
-            i = i + 1
+            # check for tha last date interval
+            if (i < len(intervals)-1):            
+                register['bet'] = bet
+                register['profit'] = profit
+            else:
+                register['bet'] = bet
+                register['profit'] = profit_account - profit_tot
+
+            profit_tot = profit_tot + register['profit']
             
-            register['bet'] = bet
-            register['profit'] = profit
-        
             registers.append(register.copy())
-        elif win == 0 and loss > 0:
+            
+            # next register
+            i = i + 1
+        elif win == 0:            
             bet = random.randint(1, init_token)
             profit = random.randint(1, init_token) * -1
-            
-            #init_token = init_token + profit
-            loss = loss - 1
+                         
+            # check for tha last date interval                         
+            if (i < len(intervals)-1):            
+                register['bet'] = bet
+                register['profit'] = profit
+            else:
+                register['bet'] = bet
+                register['profit'] = profit_account - profit_tot
+
+            profit_tot = profit_tot + register['profit']
+                
+            registers.append(register.copy())
+
+            # next register
             i = i + 1
             
-            register['bet'] = bet
-            register['profit'] = profit
-        
-            registers.append(register.copy())
-        
     return registers
         
+# Script Inputs:
 # INPUT01: players per operator input
-OPERATORS = [200, 500, 300]          
-#OPERATORS = [2]          
-
 # INPUT02: number of rounds per player
+#OPERATORS = [200, 500, 300]          
+OPERATORS = [2]          
 ROUNDS = 3
 
 # SGIJ register collections                   
@@ -686,7 +702,8 @@ betting_registers = []
 # initialize account identifier
 account_id = 1
 
-# generate SGIJ registers from OPERATORS
+# generate SGIJ virtual dataset from Inputs
+################################################
 for operator_id in range(0, len(OPERATORS)):                       
     for player_id in range(0, OPERATORS[operator_id]):
         register = player_register()
@@ -709,6 +726,8 @@ for operator_id in range(0, len(OPERATORS)):
             
             account_id = account_id + 1
             
+# export SGIJ virtual dataset to CSV files        
+##############################################            
 # export DGIJ registers collection to csv file
 csv_columns_player_register = ['operator_id',
                                'player_id',
@@ -760,13 +779,13 @@ csv_columns_account_register = ['account_id',
                                 'checkin_time',
                                 'checkout_time', 
                                 'last_visit',                                                                                              
-                                'init_token',  
-                                'profit',                                 
-                                'withdraw', 
+                                'init_token',
+                                'deposit',
+                                'profit', 
+                                'withdrawal',
+                                'final_token', 
                                 'player_skill',
-                                'rounds',                                  
-                                'wins', 
-                                'loss']
+                                'rounds']
 try:    
     with open('./csv/account_register.csv', 'w') as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=csv_columns_account_register)

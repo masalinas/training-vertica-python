@@ -1,5 +1,6 @@
 # query import csv default mysql folder
 #SHOW VARIABLES LIKE "secure_file_priv";
+#SET SQL_SAFE_UPDATES = 0;
 
 # create player table
 DROP TABLE IF EXISTS player;
@@ -82,12 +83,12 @@ CREATE TABLE IF NOT EXISTS account (
     checkout_time DATETIME,
     last_visit DATETIME,
     init_token INT(11),
+    deposit INT(11),
     profit INT(11),
-    withdraw INT(11),
+    withdrawal INT(11),
+    final_token INT(11),
     player_skill FLOAT,
     rounds INT(11),
-    wins INT(11),
-    loss INT(11),
     PRIMARY KEY (account_id)
 )  ENGINE=INNODB;
 
@@ -99,10 +100,10 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-# create gambling table
-DROP TABLE IF EXISTS gambling;
+# create betting table
+DROP TABLE IF EXISTS betting;
                         
-CREATE TABLE IF NOT EXISTS gambling (
+CREATE TABLE IF NOT EXISTS betting (
     account_id INT(11), 
     game_id VARCHAR(10),
     checkin_time DATETIME,
@@ -112,13 +113,13 @@ CREATE TABLE IF NOT EXISTS gambling (
     ip VARCHAR(125)
 )  ENGINE=INNODB;
 
-# import gambling data
-LOAD DATA INFILE '/var/lib/mysql-files/gambling_register.csv' 
-INTO TABLE gambling
+# import betting data
+LOAD DATA INFILE '/var/lib/mysql-files/betting_register.csv' 
+INTO TABLE betting
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-# remove \r in gambling table you
-update gambling SET ip = TRIM(TRAILING '\r' FROM ip);
+# remove \r in betting table you
+update betting SET ip = TRIM(TRAILING '\r' FROM ip);
