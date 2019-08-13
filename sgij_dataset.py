@@ -532,10 +532,7 @@ def player_register():
     fa = fake.date_between_dates(date_start=datetime(2010, 1, 1), date_end=datetime.now())
     register['activation_date'] = fa.strftime("%Y-%m-%d")
     register['fiscal_region'] = fiscal_region()
-    register['game_id'] = game_type()
     register['payment_method_id'] = payment_method_type()
-    register['device_type_id'] = device_type()
-    register['ip'] = fake.ipv4_private()
     register['cnj_status'] = CNJ_status()
     register['deposit_limit_day'] = deposit_limit()
     register['deposit_limit_month'] = deposit_limit()
@@ -592,12 +589,9 @@ def account_register(operator_id, player_id):
                 token -= bet   
             else: 
                 token = 0
-                checkout_time = (datetime.now()+ timedelta(hours=rounds/5)).strftime('%Y-%m-%d %H:%M')
-            #loss += 1 
-            
+                checkout_time = (datetime.now()+ timedelta(hours=rounds/5)).strftime('%Y-%m-%d %H:%M')            
         elif host_skill * host_luck < player_skill * player_luck:
             token += round(init_token * random.uniform(0.05, 0.1)) #win x% token in 1 round
-            #wins += 1
 
         skillup_coef = get_skillup_coef(player_skill)
         player_skill += math.sqrt(rounds/skillup_coef)
@@ -614,8 +608,6 @@ def account_register(operator_id, player_id):
     register['deposit'] = deposit    
     register['withdrawal'] = register['final_token'] - register['init_token'] - register['deposit'] - register['profit']    
     register['player_skill'] = player_skill
-    #register['wins'] = wins
-    #register['loss'] = loss
 
     return register
 
@@ -641,6 +633,7 @@ def betting_register(account_id):
         register['game_id'] = game_type()
         register['checkin_time'] = intervals[i][0]
         register['checkout_time'] = intervals[i][1]
+        register['device_type_id'] = device_type()
         register['ip'] = Faker().ipv4_private()
         
         # random win
@@ -747,10 +740,7 @@ csv_columns_player_register = ['operator_id',
                                'telephone',
                                'activation_date',
                                'fiscal_region',
-                               'game_id',
                                'payment_method_id',
-                               'device_type_id',
-                               'ip',
                                'cnj_status',
                                'deposit_limit_day',
                                'deposit_limit_month',
@@ -777,7 +767,7 @@ csv_columns_account_register = ['account_id',
                                 'operator_id',
                                 'player_id',
                                 'checkin_time',
-                                'checkout_time', 
+                                'checkout_time',
                                 'last_visit',                                                                                              
                                 'init_token',
                                 'deposit',
@@ -806,6 +796,7 @@ csv_columns_betting_register = ['account_id',
                                 'checkout_time', 
                                 'bet',
                                 'profit',
+                                'device_type_id',
                                 'ip']
 try:    
     with open('./csv/betting_register.csv', 'w') as csvFile:

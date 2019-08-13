@@ -24,10 +24,7 @@ CREATE TABLE IF NOT EXISTS player (
     telephone VARCHAR(65),
     activation_date DATE,
     fiscal_region VARCHAR(65),
-    game_id VARCHAR(10),
     payment_method_id VARCHAR(10),
-    device_type_id VARCHAR(10),
-    ip VARCHAR(65),
     cnj_status VARCHAR(10),
     deposit_limit_day INT(11),
     deposit_limit_month INT(11),
@@ -63,14 +60,10 @@ update player SET resident = TRIM(TRAILING '\r' FROM resident);
 update player SET address = TRIM(TRAILING '\r' FROM address);
 update player SET country = TRIM(TRAILING '\r' FROM country);
 update player SET fiscal_region = TRIM(TRAILING '\r' FROM fiscal_region);
-update player SET game_id = TRIM(TRAILING '\r' FROM game_id);
 update player SET payment_method_id = TRIM(TRAILING '\r' FROM payment_method_id);
-update player SET payment_method_id = TRIM(TRAILING '\r' FROM payment_method_id);
-update player SET device_type_id = TRIM(TRAILING '\r' FROM device_type_id);
 update player SET cnj_status = TRIM(TRAILING '\r' FROM cnj_status);
 update player SET vdocumental_status = TRIM(TRAILING '\r' FROM vdocumental_status);
 update player SET vsvdi_status = TRIM(TRAILING '\r' FROM vsvdi_status);
-update player SET ip = TRIM(TRAILING '\r' FROM ip);
 
 # create account table
 DROP TABLE IF EXISTS account;
@@ -110,6 +103,7 @@ CREATE TABLE IF NOT EXISTS betting (
     checkout_time DATETIME,
     bet INT(11),
     profit INT(11),
+	device_type_id VARCHAR(10),    
     ip VARCHAR(125)
 )  ENGINE=INNODB;
 
