@@ -7,12 +7,14 @@ Created on Sat Aug 10 15:23:18 2019
 @email: miguel@thingtrack.com
 """
 
+import argparse
 import math
 import random
 from datetime import datetime
 from datetime import timedelta
 from faker import Faker
 from faker.providers import internet
+import numpy as np
 import pycountry
 import csv
 
@@ -680,13 +682,6 @@ def betting_register(account_id):
             
     return registers
         
-# Script Inputs:
-# INPUT01: players per operator input
-# INPUT02: number of rounds per player
-#OPERATORS = [200, 500, 300]          
-OPERATORS = [2]          
-ROUNDS = 3
-
 # SGIJ register collections                   
 player_registers = []
 account_registers = []
@@ -695,10 +690,22 @@ betting_registers = []
 # initialize account identifier
 account_id = 1
 
+# Script Inputs:
+parser = argparse.ArgumentParser(description='SGIJ Virtual Dataset generator ', epilog='Example of use: python3 sgij_dataset.py -p 200 500 300 -r 3')
+parser.add_argument('-p', '--players', nargs='*', type=int, default=[2], help='list of players per operator')
+parser.add_argument('-r', '--rounds', type=int, default=3, help='number of rounds per player in a period of time')
+
+args = parser.parse_args()
+PLAYERS = args.players
+ROUNDS = args.rounds
+
+print ('Creating Virtual Dataset CSV files for players: ' + str(np.sum(PLAYERS)) + ', rounds: ' +str(ROUNDS))
+print()
+
 # generate SGIJ virtual dataset from Inputs
 ################################################
-for operator_id in range(0, len(OPERATORS)):                       
-    for player_id in range(0, OPERATORS[operator_id]):
+for operator_id in range(0, len(PLAYERS)):                       
+    for player_id in range(0, PLAYERS[operator_id]):
         register = player_register()
         register['operator_id'] = operator_id + 1
         register['player_id'] = player_id + 1
