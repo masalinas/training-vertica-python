@@ -44,4 +44,4 @@ print(titanic.columns)
 titanic.bar(columns = ['age', 'pclass'])
    
 # do things
-#connection.close()
+connection.close()

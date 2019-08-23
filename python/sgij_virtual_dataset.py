@@ -764,7 +764,7 @@ csv_columns_player_register = ['operator_id',
                                'vdocumental_status',
                                'vdocumental_date']
 try:
-    with open('./csv/player_register.csv', 'w') as csvFile:
+    with open('../csv/player_register.csv', 'w') as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=csv_columns_player_register)
         writer.writeheader()
 
@@ -791,7 +791,7 @@ csv_columns_account_register = ['account_id',
                                 'player_skill',
                                 'bettings']
 try:
-    with open('./csv/account_register.csv', 'w') as csvFile:
+    with open('../csv/account_register.csv', 'w') as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=csv_columns_account_register)
         writer.writeheader()
 
@@ -813,7 +813,7 @@ csv_columns_betting_register = ['account_id',
                                 'device_type_id',
                                 'ip']
 try:
-    with open('./csv/betting_register.csv', 'w') as csvFile:
+    with open('../csv/betting_register.csv', 'w') as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=csv_columns_betting_register)
         writer.writeheader()
 
