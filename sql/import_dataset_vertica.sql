@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS gaming.account (
     withdrawal INT,
     final_token INT,
     player_skill FLOAT,
-    rounds INT
+    bettings INT
 );
 
 ALTER TABLE gaming.account ADD CONSTRAINT C_PRIMARY_ACCOUNT PRIMARY KEY (account_id) DISABLED;

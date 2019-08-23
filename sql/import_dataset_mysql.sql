@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS account (
     withdrawal INT(11),
     final_token INT(11),
     player_skill FLOAT,
-    rounds INT(11),
+    bettings INT(11),
     PRIMARY KEY (account_id)
 )  ENGINE=INNODB;
 

@@ -63,13 +63,19 @@ faker_lang_iso_codes = ['ar_EG',
                         'uk_UA',
                         'zh_CN',
                         'zh_TW']
-                                      
+
+# random biased gender function (40% Female, 60% Male)
+def gender_biased():
+    val = random.randint(0,9)
+    
+    return 'M' if val < 6 else 'F'
+
 # random gender function
-def gender(): 
+def gender():
     return 'M' if random.randint(0,1) == 0 else 'F'
 
 # random country function
-def country_code(): 
+def country_code():
     return random.choice(['AF',
                           'AX',
                           'AL',
@@ -319,13 +325,13 @@ def country_code():
                           'EH',
                           'YE',
                           'ZM',
-                          'ZW'])  
-                                       
+                          'ZW'])
+
 # random game type function
-def game_type(): 
-    return random.choice(['ADC', 
-                          'AHC', 
-                          'ADX', 
+def game_type():
+    return random.choice(['ADC',
+                          'AHC',
+                          'ADX',
                           'ADM',
                           'AHM',
                           'AHX',
@@ -354,9 +360,9 @@ def game_type():
                           'OBL',
                           'OGP',
                           'OLT'])
-                                   
+
 # random payment method function
-def payment_method_type(): 
+def payment_method_type():
     return random.choice(['1',
                           '2',
                           '3',
@@ -377,10 +383,10 @@ def payment_method_type():
                           '18',
                           '19',
                           '20',
-                          '99'])    
-                                             
+                          '99'])
+
 # random CNJ status function
-def CNJ_status(): 
+def CNJ_status():
     return random.choice(['A',
                          'PV',
                          'S',
@@ -389,10 +395,10 @@ def CNJ_status():
                          'AC',
                          'PR',
                          'AE',
-                         'O',])  
+                         'O',])
 
 # random document type function
-def document_type(): 
+def document_type():
     return random.choice(['ID',
                           'SS',
                           'PA',
@@ -400,15 +406,15 @@ def document_type():
                           'OT'])
 
 # random device type function
-def device_type(): 
+def device_type():
     return random.choice(['MO',
                           'PC',
                           'TB',
                           'TF',
                           'OT'])
-                                       
+
 # random region fiscal function
-def fiscal_region(): 
+def fiscal_region():
     return random.choice(['01',
                           '02',
                           '03',
@@ -430,24 +436,24 @@ def fiscal_region():
                           '19',
                           '20',
                           '21',
-                          '22'])                                                
+                          '22'])
 
 # random Deposit limit function
-def deposit_limit(): 
+def deposit_limit():
     return random.choice(['600',
                           '1500',
                           '3000',
-                          '-1']) 
+                          '-1'])
 
 # random VSVDI Status function
-def vsvdi_status():  
+def vsvdi_status():
     return random.choice(['S',
-                          'N']) 
+                          'N'])
 
 # random VDocumental Status function
-def vdocumental_status():  
+def vdocumental_status():
     return random.choice(['S',
-                          'N'])                      
+                          'N'])
 
 
 def get_skillup_coef(x):
@@ -457,45 +463,45 @@ def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
 
 # generate a date intervals for a betting account holder in a period of time
-def betting_date_intervals(checkin_time, checkout_time, rounds): 
-    interval = [] 
+def betting_date_intervals(checkin_time, checkout_time, bettings):
+    interval = []
 
-    t_in = datetime.strptime(checkin_time, '%Y-%m-%d %H:%M')    
-    t_out = datetime.strptime(checkout_time, '%Y-%m-%d %H:%M') 
-    
+    t_in = datetime.strptime(checkin_time, '%Y-%m-%d %H:%M')
+    t_out = datetime.strptime(checkout_time, '%Y-%m-%d %H:%M')
+
     # calculate total betting time spent in minutes
     total_round_time = (t_out - t_in).total_seconds() / 60
-    
-    # calculate a random sorted checkout datetime collection from total rounds
-    for j in range(2*rounds - 2): 
+
+    # calculate a random sorted checkout datetime collection from total bettings
+    for j in range(2*bettings - 2):
         time_round = random.randint(0, total_round_time)
         checkout_round_time = t_in + timedelta(minutes=time_round)
-        
-        interval.append(checkout_round_time) 
-  
+
+        interval.append(checkout_round_time)
+
     interval.sort()
-        
+
     # convert datetime to string
-    for j in range(len(interval)): 
+    for j in range(len(interval)):
         interval[j] = interval[j].strftime('%Y-%m-%d %H:%M')
-    
+
     interval.insert(0, checkin_time)
     interval.append(checkout_time)
-    
+
     interval = [tuple(interval[i:i+2]) for i in range(0, len(interval), 2)]
-    
+
     return interval
-    
+
 # generate the player personal information register
 def player_register():
     register = {}
-    
+
     # generate random ISO country code
     cc = country_code()
-    
+
     # if lang ISO country code is not supported get Spain code
     country_codes_supported = [s for s in faker_lang_iso_codes if cc in s]
-    
+
     if len(country_codes_supported) == 0 :
         register['resident'] = 'S'
         cc = 'ES'
@@ -503,30 +509,31 @@ def player_register():
     else:
         register['resident'] = 'N'
         lang_iso_code = country_codes_supported[0]
-    
+
     # get country from ISO country code
     country = pycountry.countries.get(alpha_2=cc)
 
     fake = Faker(lang_iso_code)
     fake.add_provider(internet)
 
-    # generate random gender
-    sex = gender()
+    # generate random gender biased
+    #sex = gender()
+    gender = gender_biased()
 
     # configure fake gender profile and generate random name, surname
-    fake.profile(sex=sex)
-     
+    fake.profile(sex=gender)
+
     # create register
     register['first_name'] = fake.first_name()
     register['last_name_01'] = fake.last_name()
     register['last_name_02'] = fake.last_name()
-    register['sex'] = sex
+    register['sex'] = gender
     register['birthdate'] = fake.date_between_dates(date_start=datetime(1970, 1, 1), date_end=datetime(2000, 1, 1)).strftime("%Y-%m-%d")
     register['document_type_id'] = document_type()
-    register['identification_document'] = fake.credit_card_number(card_type=None)  
+    register['identification_document'] = fake.credit_card_number(card_type=None)
     register['email'] = fake.email()
-    register['login'] = register['email'] 
-    register['pseudonym'] = register['email'].split("@")[0] 
+    register['login'] = register['email']
+    register['pseudonym'] = register['email'].split("@")[0]
     register['resident'] = register['resident']
     register['address'] = fake.address()
     register['country'] = country.name
@@ -539,76 +546,74 @@ def player_register():
     register['deposit_limit_day'] = deposit_limit()
     register['deposit_limit_month'] = deposit_limit()
     register['deposit_limit_year'] = deposit_limit()
-    
+
     register['vsvdi_status'] = vsvdi_status()
     register['vsvdi_date'] = (fa + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d")
-    
+
     register['vdocumental_status'] = vdocumental_status()
     register['vdocumental_date'] = (fa + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d")
-        
+
     return register
 
-# generate the account-holder status register in a period of time   
+# generate the account-holder status register in a period of time
 def account_register(operator_id, player_id):
     register = {}
-     
+
     host_skill = 10
-    #wins = 0
-    #loss = 0
-    rounds = 0
+    bettings = 0
     checkin_time = None
     checkout_time = None
     start_time = None
-    
-    if not any(register['operator_id'] == operator_id and 
+
+    if not any(register['operator_id'] == operator_id and
                register['player_id'] == player_id for register in account_registers):
-        start_time = datetime.now() + timedelta(minutes = random.randint(1, 2000))
+        activation_date = next(register['activation_date'] for register in player_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id)
+        start_time = datetime.strptime(activation_date, "%Y-%m-%d") + timedelta(minutes = random.randint(15, 1440)) # (1/4, 24) hour
         checkin_time = start_time.strftime('%Y-%m-%d %H:%M')
         init_token = round(random.uniform(1, 10)) * 100
         deposit = roundup(init_token * random.uniform(0.7, 1.3))
         player_skill = random.uniform(6 ,9)
-        
+
         register['player_skill'] = player_skill
         register['init_token'] = init_token
         register['last_visit'] = start_time
     else:
-        #previous_final_token = roundup(next(register['final_token'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) - 1) 
-        init_token = roundup(next(register['init_token'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) * random.uniform(0.7, 1.3) / 2) 
+        init_token = roundup(next(register['init_token'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) * random.uniform(0.7, 1.3) / 2)
         deposit = roundup(init_token * random.uniform(0.7, 1.3))
         player_skill = next(register['player_skill'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id)
-        start_time = next(register['last_visit'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) + timedelta(days=random.randint(3,7))
+        start_time = next(register['last_visit'] for register in account_registers if register['operator_id'] == operator_id and register.get("player_id") == player_id) + timedelta(minutes=random.randint(4320, 10080)) # (3, 7) days
         checkin_time = start_time.strftime('%Y-%m-%d %H:%M')
         register['last_visit'] = start_time
-        
+
     token = init_token
-     
-    while token > 0 and rounds <= random.uniform(5, 10): # (min, max) total rounds
+
+    while token > 0 and bettings <= random.uniform(5, 10): # (min, max) total bettings
         host_luck = random.uniform(10, 20)
         player_luck = random.randint(8, 28)
         if host_skill * host_luck > player_skill * player_luck:
             bet = round(init_token * random.uniform(0.05, 0.1))
             if token >= bet:
-                token -= bet   
-            else: 
+                token -= bet
+            else:
                 token = 0
-                checkout_time = (datetime.now()+ timedelta(hours=rounds/5)).strftime('%Y-%m-%d %H:%M')            
+                checkout_time = (datetime.now()+ timedelta(hours=bettings/5)).strftime('%Y-%m-%d %H:%M')
         elif host_skill * host_luck < player_skill * player_luck:
             token += round(init_token * random.uniform(0.05, 0.1)) #win x% token in 1 round
 
         skillup_coef = get_skillup_coef(player_skill)
-        player_skill += math.sqrt(rounds/skillup_coef)
-        rounds += 1
-        
-    checkout_time = (start_time + timedelta(hours=rounds/5)).strftime('%Y-%m-%d %H:%M')
+        player_skill += math.sqrt(bettings/skillup_coef)
+        bettings += 1
+
+    checkout_time = (start_time + timedelta(hours=bettings/5)).strftime('%Y-%m-%d %H:%M')
 
     register['checkin_time'] = checkin_time
     register['checkout_time'] = checkout_time
-    register['rounds'] = rounds
+    register['bettings'] = bettings
     register['init_token'] = init_token
     register['final_token'] = roundup(token * random.uniform(0.7, 1.3))
     register['profit'] = token - init_token
-    register['deposit'] = deposit    
-    register['withdrawal'] = register['final_token'] - register['init_token'] - register['deposit'] - register['profit']    
+    register['deposit'] = deposit
+    register['withdrawal'] = register['final_token'] - register['init_token'] - register['deposit'] - register['profit']
     register['player_skill'] = player_skill
 
     return register
@@ -617,19 +622,19 @@ def account_register(operator_id, player_id):
 def betting_register(account_id):
     registers = []
     register = {}
-    
+
     checkin_time = next(account_register['checkin_time'] for account_register in account_registers if account_register['account_id'] == account_id)
     checkout_time = next(account_register['checkout_time'] for account_register in account_registers if account_register['account_id'] == account_id)
-    rounds = next(account_register['rounds'] for account_register in account_registers if account_register['account_id'] == account_id)        
-    init_token = next(account_register['init_token'] for account_register in account_registers if account_register['account_id'] == account_id)    
-    profit_account = next(account_register['profit'] for account_register in account_registers if account_register['account_id'] == account_id)    
-    
-    intervals = betting_date_intervals(checkin_time, checkout_time, rounds)
-    
+    bettings = next(account_register['bettings'] for account_register in account_registers if account_register['account_id'] == account_id)
+    init_token = next(account_register['init_token'] for account_register in account_registers if account_register['account_id'] == account_id)
+    profit_account = next(account_register['profit'] for account_register in account_registers if account_register['account_id'] == account_id)
+
+    intervals = betting_date_intervals(checkin_time, checkout_time, bettings)
+
     i = 0
     profit_tot = 0
 
-    # bettng loop generator    
+    # bettng loop generator
     while i < len(intervals):
         register['account_id'] = account_id
         register['game_id'] = game_type()
@@ -637,18 +642,18 @@ def betting_register(account_id):
         register['checkout_time'] = intervals[i][1]
         register['device_type_id'] = device_type()
         register['ip'] = Faker().ipv4_private()
-        
+
         # random win
         win = random.randint(0, 1)
         bet = 0;
         profit = 0;
-        
+
         if win == 1:
             bet = random.randint(1, init_token)
             profit = random.randint(1, init_token)
-            
+
             # check for tha last date interval
-            if (i < len(intervals)-1):            
+            if (i < len(intervals)-1):
                 register['bet'] = bet
                 register['profit'] = profit
             else:
@@ -656,17 +661,17 @@ def betting_register(account_id):
                 register['profit'] = profit_account - profit_tot
 
             profit_tot = profit_tot + register['profit']
-            
+
             registers.append(register.copy())
-            
+
             # next register
             i = i + 1
-        elif win == 0:            
+        elif win == 0:
             bet = random.randint(1, init_token)
             profit = random.randint(1, init_token) * -1
-                         
-            # check for tha last date interval                         
-            if (i < len(intervals)-1):            
+
+            # check for tha last date interval
+            if (i < len(intervals)-1):
                 register['bet'] = bet
                 register['profit'] = profit
             else:
@@ -674,15 +679,15 @@ def betting_register(account_id):
                 register['profit'] = profit_account - profit_tot
 
             profit_tot = profit_tot + register['profit']
-                
+
             registers.append(register.copy())
 
             # next register
             i = i + 1
-            
+
     return registers
-        
-# SGIJ register collections                   
+
+# SGIJ register collections
 player_registers = []
 account_registers = []
 betting_registers = []
@@ -691,57 +696,59 @@ betting_registers = []
 account_id = 1
 
 # Script Inputs:
-parser = argparse.ArgumentParser(description='SGIJ Virtual Dataset generator ', epilog='Example of use: python3 sgij_dataset.py -p 200 500 300 -r 3')
+parser = argparse.ArgumentParser(description='SGIJ Virtual Dataset generator ', epilog='Example of use: python3 sgij_dataset.py -p 200 500 300')
 parser.add_argument('-p', '--players', nargs='*', type=int, default=[2], help='list of players per operator')
-parser.add_argument('-r', '--rounds', type=int, default=3, help='number of rounds per player in a period of time')
 
 args = parser.parse_args()
 PLAYERS = args.players
-ROUNDS = args.rounds
 
-print ('Creating Virtual Dataset CSV files for players: ' + str(np.sum(PLAYERS)) + ', rounds: ' +str(ROUNDS))
+# max round played for any player in a day
+MAX_BETTINGS = 10
+
+print ('Creating Virtual Dataset CSV files for players: ' + str(np.sum(PLAYERS)))
 print()
 
 # generate SGIJ virtual dataset from Inputs
 ################################################
-for operator_id in range(0, len(PLAYERS)):                       
+for operator_id in range(0, len(PLAYERS)):
     for player_id in range(0, PLAYERS[operator_id]):
         register = player_register()
         register['operator_id'] = operator_id + 1
         register['player_id'] = player_id + 1
-        
+
         player_registers.append(register)
-        
-        # generate account player registers from ROUNDS 
-        for r in range(ROUNDS):
+
+        # generate account player registers from random bettings
+        bettings = random.randint(1, MAX_BETTINGS)
+        for r in range(bettings):
             register = account_register(operator_id + 1, player_id + 1)
             register['account_id'] = account_id
             register['operator_id'] = operator_id + 1
             register['player_id'] = player_id + 1
-         
+
             account_registers.append(register)
-            
+
             # generate gampling player registers from each round
             betting_registers.extend(betting_register(account_id))
-            
+
             account_id = account_id + 1
-            
-# export SGIJ virtual dataset to CSV files        
-##############################################            
+
+# export SGIJ virtual dataset to CSV files
+##############################################
 # export DGIJ registers collection to csv file
 csv_columns_player_register = ['operator_id',
                                'player_id',
-                               'first_name', 
-                               'last_name_01', 
-                               'last_name_02', 
-                               'sex', 
-                               'birthdate', 
-                               'document_type_id', 
-                               'identification_document', 
-                               'email', 
-                               'login', 
-                               'pseudonym', 
-                               'resident', 
+                               'first_name',
+                               'last_name_01',
+                               'last_name_02',
+                               'sex',
+                               'birthdate',
+                               'document_type_id',
+                               'identification_document',
+                               'email',
+                               'login',
+                               'pseudonym',
+                               'resident',
                                'address',
                                'country',
                                'telephone',
@@ -760,10 +767,10 @@ try:
     with open('./csv/player_register.csv', 'w') as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=csv_columns_player_register)
         writer.writeheader()
-        
+
         for player_register in player_registers:
             writer.writerow(player_register)
-        
+
     csvFile.close()
 except IOError:
     print("I/O Player Dataset CSV file error.")
@@ -775,22 +782,22 @@ csv_columns_account_register = ['account_id',
                                 'player_id',
                                 'checkin_time',
                                 'checkout_time',
-                                'last_visit',                                                                                              
+                                'last_visit',
                                 'init_token',
                                 'deposit',
-                                'profit', 
+                                'profit',
                                 'withdrawal',
-                                'final_token', 
+                                'final_token',
                                 'player_skill',
-                                'rounds']
-try:    
+                                'bettings']
+try:
     with open('./csv/account_register.csv', 'w') as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=csv_columns_account_register)
         writer.writeheader()
-        
+
         for account_register in account_registers:
             writer.writerow(account_register)
-        
+
     csvFile.close()
 except IOError:
     print("I/O Account Dataset CSV file error")
@@ -800,24 +807,24 @@ print('STEP02: Account Dataset CSV file generated correctly ...')
 csv_columns_betting_register = ['account_id',
                                 'game_id',
                                 'checkin_time',
-                                'checkout_time', 
+                                'checkout_time',
                                 'bet',
                                 'profit',
                                 'device_type_id',
                                 'ip']
-try:    
+try:
     with open('./csv/betting_register.csv', 'w') as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=csv_columns_betting_register)
         writer.writeheader()
-        
+
         for betting_register in betting_registers:
             writer.writerow(betting_register)
-        
+
     csvFile.close()
 except IOError:
     print("I/O Betting Dataset CSV file error")
 
 print('STEP03: Betting Dataset CSV file generated correctly ...')
 
-print()    
+print()
 print('Virtual Dataset CSV files generated correctly ...')
