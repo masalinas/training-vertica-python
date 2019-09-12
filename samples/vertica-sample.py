@@ -6,7 +6,6 @@ import logging
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
 # ------- create vertica connection ------
 conn_info = {'host': '192.168.1.16',
