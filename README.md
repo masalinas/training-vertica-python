@@ -1,7 +1,7 @@
 # training-vertica-python
 Training Vertica Python
 
-## Folders 
+## Folders
 
 * sgij: all python scripts and jupyter notebooks to create virtual datasets and machine learning on MySQL and Vertica from SGIJ
 * training: datasets and jupyter notebooks about training machine learning
