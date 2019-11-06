@@ -2,3 +2,5 @@ docs/*.odt
 
 .ipynb_checkpoints
 .vscode
+
+*.zip
