@@ -5,3 +5,4 @@ docs/*.odt
 .ipynb_checkpoints
 __pycache__
 *.zip
+*.odt
