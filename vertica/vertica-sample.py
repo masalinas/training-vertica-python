@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # ------- create vertica connection ------
-conn_info = {'host': '192.168.1.16',
+conn_info = {'host': '192.168.1.125',
              'port': 5433,
              'user': 'dbadmin',
              'password': 'password',
@@ -20,11 +20,6 @@ with vertica_python.connect(**conn_info) as connection:
 	cur = connection.cursor()
 
 	cur.execute("SELECT sa.Deptno, sa.Empno, sa.Sal, ROUND(AVG(sa.Sal) OVER(PARTITION BY sa.Deptno), 2) AS Avg FROM training.salary sa")
-	#cur.execute("SELECT sa.Deptno, sa.Empno, sa.Sal, ROUND(AVG(sa.Sal) OVER(PARTITION BY sa.Deptno), 2) AS Avg FROM training.salary sa")
-
-	# list all cursor registers
-	#for row in cur.iterate():
-		#print(row)
 
     # convert source to matplotlib 
 	data = np.array(cur.fetchall())
